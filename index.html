@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            padding: 0px;
+            margin: 0px;
+        }
+        div#full-form{
+            background: green;
+            width: 300px;
+            height: 200px;
+            margin-left: 300px;
+            margin-top: 50px;
+        }
+        h1{
+            font-size: 19px;
+            font-size: serif;
+        }
+        input#weight{
+            width: 80%;
+            font-size: 13px;
+            text-align: center;
+            font-family: serif;
+        }
+        input#height{
+            width: 80%;
+            font-size: 13px;
+            text-align: center;
+            font-family: serif;
+        }
+        div#buttons{
+            
+            margin-top: 18px;
+
+        }
+        button#clbtn{
+            background: antiquewhite;
+            color: chocolate;
+            border: none;
+            border-radius: 10px;
+            width: 66px;
+            height: 20px;
+        }
+        button#resetbtn{
+            margin-left: 35px;
+            background: brown;
+            width: 50px;
+            color: whitesmoke;
+            height: 20px;
+            border: none;
+            border-radius: 10px;
+        }
+        div#form{
+            text-align: center;
+        }
+        #p1{
+            background-color: yellowgreen;
+            color: red;
+        }
+        #msg1{
+            color: aqua;
+            margin-top: 10px;
+        }
+        #msg2{
+            color: blue;
+            margin-top: 4px;
+        }
+
+    </style>
+</head>
+
+<body>
+    <div id = "full-form">
+        <p id = "p1"><marquee onmouseover="this.stop()" onmouseout="this.start()">BMI CALCULATOR</marquee></p>
+        <div id = "form">
+            <h1>Give you weight</h1>
+            <input type="text" placeholder="Enter you weight" id = "weight">
+            <h1>Give you height</h1>
+            <input type="text" placeholder="Enter you height" id = "height">
+            <div id = "buttons">
+                <button id = "clbtn" onclick="EventHandler()">Calculate</button>
+                <button id = "resetbtn" onclick="reseting()">Reset</button>
+                <div id = "msg1"></div>
+                <div id = "msg2"></div>
+
+            </div>
+        </div>
+    </div>
+    <script>
+        var weightInput = document.getElementById("weight");
+        var heightInput = document.getElementById("height");
+        var reset = document.getElementById("resetbtn");
+        var calculate = document.getElementById("clbtn");
+        var weight = Number(weightInput.value);
+        var height = Number(heightInput.value);
+        var bmi = weight/(height*height);
+        var tx1 =  document.getElementById("msg1");
+        var tx2 =  document.getElementById("msg2");
+        function calculating(){
+            var weight = Number(weightInput.value);
+            var height = Number(heightInput.value);
+            var bmi = weight/(height*height);
+            var tx1 =  document.getElementById("msg1");
+            var tx2 =  document.getElementById("msg2");
+                tx1.innerHTML = ("your bmi is " + bmi.toFixed(2));
+        }
+        function reseting(){
+            tx1.innerHTML = "";
+            weightInput.value = "";
+            heightInput.value = "";
+            tx2.innerHTML = "";
+        }
+        function EventHandler(){
+            var weight = Number(weightInput.value);
+            var height = Number(heightInput.value);
+            if(Number(weightInput.value == "") && Number(heightInput.value == "")){
+            alert("Please Give Your Valid Input");
+            }
+            else{
+                calculating();
+                var bmi = weight/(height*height);
+                var tx2 =  document.getElementById("msg2");
+                var messages = message(bmi);
+                tx2.innerHTML= messages;
+            }
+
+        }
+        function message(bmivalue){
+            if (bmivalue <= 2){
+                return("you are totally thin");
+            }
+            else if(bmivalue>2 && bmivalue<3){
+                return("you are normal");
+
+            }
+            else if(bmivalue>=3 && bmivalue<4){
+                return("you are fatty");
+            }
+            else{
+                return("you are overweight");
+            }
+
+        }
+
+
+    </script>
+</body>
+</html>
